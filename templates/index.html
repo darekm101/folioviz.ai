@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Review</title>
+  <link href="https://vjs.zencdn.net/7.10.2/video-js.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</head>
+<body>
+  <div id="container">
+    <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" autoplay muted data-setup='{}'>
+      <source src="{{ url_for('static', filename=video_file[7:]) }}" type="video/mp4">
+      <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a web browser that
+        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+      </p>
+    </video>
+    <div id="buttons">
+      <form action="/remove" method="POST">
+        <input type="hidden" name="video_to_remove" value="{{ video_file }}">
+        <button type="submit" class="button-29-red">
+          <svg width="24px" height="24px" viewBox="0 0 24 24" stroke="#FFFFFF" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 9l-1.995 11.346A2 2 0 0116.035 22h-8.07a2 2 0 01-1.97-1.654L4 9M21 6h-5.625M3 6h5.625m0 0V4a2 2 0 012-2h2.75a2 2 0 012 2v2m-6.75 0h6.75" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" color="#000000"></path>
+          </svg>
+          <span>Delete</span>
+        </button>
+      </form>
+
+      <form action="/previous" method="POST">
+        <input type="hidden" name="current_video" value="{{ video_file }}">
+        <button type="submit" class="button-29">Back</button>
+      </form>
+      <form action="/keep" method="POST">
+        <button type="submit" class="button-29">Keep it</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

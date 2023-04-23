@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Videos</title>
+  <link href="https://vjs.zencdn.net/7.10.2/video-js.min.css" rel="stylesheet">
+  <style>
+    /* Set the dimensions of the video player */
+    #container {
+      position: relative;
+      width: 800px;
+      height: 450px;
+    }
+    #video0, #video1 {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <video id="video0" class="video-js vjs-default-skin" controls muted autoplay data-setup='{}'></video>
+    <video id="video1" class="video-js vjs-default-skin" controls muted autoplay data-setup='{}'></video>
+  </div>
+
+  <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
+  <script>
+    const videos = {{ video_files|tojson }};
+    let videoIndex = 0;
+
+    function playNextVideo() {
+    if (videoIndex < videos.length) {
+        const currentVideo = videojs.getPlayers()["video" + (videoIndex % 2)];
+        const nextVideo = videojs.getPlayers()["video" + ((videoIndex + 1) % 2)];
+        
+        currentVideo.el().style.zIndex = 1;
+        nextVideo.el().style.zIndex = 0;
+        
+        currentVideo.src(videos[videoIndex]);
+        currentVideo.currentTime(0);
+        currentVideo.load();
+        currentVideo.play();
+        
+        videoIndex++;
+    } else {
+        videoIndex = 0;
+        playNextVideo();
+    }
+}
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const video1 = videojs('video0');
+      const video2 = videojs('video1');
+
+      video1.on('ended', playNextVideo);
+      video2.on('ended', playNextVideo);
+
+      playNextVideo();
+    });
+  </script>
+</body>
+</html>
