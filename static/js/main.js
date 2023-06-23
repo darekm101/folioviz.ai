@@ -1,17 +1,35 @@
 // index.html script
+console.log("main.js loaded");
+
+
 var player = videojs('my-video');
 
-// if (player) {
-//   player.on('ended', function() {
-//     // Click the "Keep it" button
-//     document.getElementById("keep-it-button").click();
-//   });
-// }
+function handleKeyDown(event) {
+  // Check which key was pressed
+  console.log("Key Pressed:");
+  console.log(event.key);
+  switch (event.key.toLowerCase()) {
+    case 'l': // Keep it
+      document.getElementById("btn-keep-it").submit();
+      break;
+    case 'j': // Back
+      document.querySelector('form[action="/previous"]').submit();
+      break;
+    case 'd': // Delete it
+      document.querySelector('form[action="/remove"]').submit();
+      break;
+  }
+}
 
-player.on('ended', function() {
-  // Submit the "Keep it" form
-  document.getElementById("keep-it-form").submit();
+document.addEventListener('DOMContentLoaded', function () {
+  // Add keydown event listener
+  window.addEventListener('keydown', handleKeyDown);
+
 });
+// player.on('ended', function() {
+//   // Submit the "Keep it" form
+//   document.getElementById("keep-it-form").submit();
+// });
 
 // For index.html
 if (document.getElementById("my-video")) {
