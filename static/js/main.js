@@ -21,6 +21,23 @@ function handleKeyDown(event) {
   }
 }
 
+// Function to handle Speed Up button click
+
+function handleSpeedUp() {
+  player.playbackRate(player.playbackRate() + 1);
+  console.log("Playback rate: " + player.playbackRate());
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Add keydown event listener
+  window.addEventListener('keydown', handleKeyDown);
+
+  // Add click event listener for Speed Up button
+  if (document.getElementById('btn-speed-up')) {
+    document.getElementById('btn-speed-up').addEventListener('click', handleSpeedUp);
+  }
+});
+
 document.addEventListener('DOMContentLoaded', function () {
   // Add keydown event listener
   window.addEventListener('keydown', handleKeyDown);
