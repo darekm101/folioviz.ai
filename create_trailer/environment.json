@@ -1,0 +1,10 @@
+{
+    "source_video_files": "./source_videos", 
+    "audio_files": "./audios", 
+    "temp_directory": "./temp", 
+    "temp_configs": "./temp/configs",
+    "temp_audio_configs": "./temp/audio_configs",
+    "temp_video_cnfigs": "./temp/video_configs",
+    "temp_videos": "./temp/videos",
+    "output_directory": "./output"
+}
