@@ -19,6 +19,12 @@
         <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
       </p>
     </video>
+
+    <div id="in-out-points">
+      <span id="in-point">IN: --:--</span>
+      <span id="out-point">OUT: --:--</span>
+    </div>
+
     <div id="buttons">
       <form action="/remove" method="POST" id="btn-remove">
         <input type="hidden" name="video_to_remove" value="{{ video_file }}">
@@ -38,6 +44,8 @@
         <button type="submit" class="button-29">Keep it</button>
       </form>
       <button id="btn-speed-up" class="button-29">Speed Up</button>
+      <button id="btn-trim" class="button-29" disabled>Trim</button>
+      
 
     </div>
   </div>
